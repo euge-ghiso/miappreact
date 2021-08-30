@@ -4,15 +4,16 @@ import NavBar from './components/NavBar/NavBar';
 import ItemListContainer from './components/container/ItemListContainer'; 
 
 
+
 function App() {
   return (
     <div className="App">
      
    <NavBar />
-   <ItemListContainer greeting={"¡¡¡Hola !!! ֎"} />
+   <ItemListContainer greeting={"¡¡¡Hola !!! "} />
 
 
-   <h1> Desafio nro 4 </h1>
+   <h1> Desafio nro 5 </h1>
     </div>
   );
 }

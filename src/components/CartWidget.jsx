@@ -1,5 +1,4 @@
-import "../container/CartWidget.css"
- const CartWidget = () => {
+const CartWidget = () => {
     return (
       <>
        
