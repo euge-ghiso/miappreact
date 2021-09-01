@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function ItemCount(){
-    const stock=1;
+ function ItemCount({ stock, initial,  onAdd }){
+   
     const [estado, setEstado] = useState(0);
     const sinStock="tu pedido supera el stock!!   ";
 
