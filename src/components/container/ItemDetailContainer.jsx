@@ -5,35 +5,41 @@ import { useParams } from 'react-router-dom';
 
 
 
-const producto = {id, nombre, descripcion, precio , stock, pictureUrl}
-
-let getProducto = new Promise((resolve) => {
-    setTimeout(() => {
-    resolve(producto);        
-   }, 2000);
+const producto = { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""}
 
 function ItemDetailContainer() {
-    const {id}= useParams ()
 
     const [producto, setProducto] = useState({})
     const [loading, setLoading] = useState(true)
+    const {id}= useParams ()
 
-    useEffect(() => {
 
+    let getProducto = new Promise((resolve) => {
+        setTimeout(() => {
+        resolve(producto)        
+       }, 2000);})
+
+       useEffect(()=>{
         getProducto.then(resp => 
-       {setProducto(resp)
-       setLoading(false)
-    })      
+        {
+        setProducto(resp)
+        setLoading(false)}
+        ,)});  
 
-}, [])
+        useEffect(() => {
+        getProducto.then(resp => 
+         {
+         setProducto(resp)
+        setLoading(false)
+    })}, [id])
     
     return (
         <>
             {loading ?
             <h2>Aguarde unos segundos....</h2> : 
-            <ItemDetail produ={produ} /> }
+            <ItemDetail producto={producto} /> }
            
         </>
-    )
+    );
 }
 export default ItemDetailContainer;

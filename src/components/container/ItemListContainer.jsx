@@ -1,11 +1,11 @@
  import "../container/ItemListContainer.css"
  import ItemCount from '../ItemCount';
  import ItemList from '../ItemList';
- import { useEffect } from 'react';
+ import { useEffect,useState } from 'react';
  import { useParams } from 'react-router-dom';
 
  const productos = [
-  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"",},
+  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""},
   { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"" },
   { id: 3, nombre: "lupinos",description:"planta", precio: 40, stock: 5,pictureUrl:""},
   { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:""},
@@ -21,11 +21,12 @@ let tarea = new Promise((resolve) => {
 
 });
 
-function ItemListContainer () {
-  const[productos,setProductos] =UseState()
-  const {category}= useParams ()
-  
+function ItemListContainer() {
 
+  const[productos, setProductos] = useState([])
+
+  const {category} = useParams ()
+  
   useEffect(() => {
     if(category===undefined){
       tarea.then((respuesta)=>setProductos(respuesta))
@@ -38,7 +39,7 @@ else{
   
     return (
       <>
-        <h2> Saludo: {greeting} </h2>
+        
         <ItemCount stock="5" initial="1" />
       
         <ItemList productos={productos}/>
