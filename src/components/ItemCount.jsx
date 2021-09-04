@@ -25,8 +25,9 @@ import { useState } from 'react';
         <label> {estado}  unidades en pedido   </label>
         <label> {stock}   unidades en stock </label>
           
-        <button onClick={sumaCarro}> agrega al carrito</button> 
-        <button onClick={restaCarro}> saca del carrito</button> 
+        <button onClick={sumaCarro}> +</button> 
+        <label> {stock}   cantidad </label>
+        <button onClick={restaCarro}> -</button> 
         </div>
     );
     

@@ -2,43 +2,49 @@
  import ItemCount from '../ItemCount';
  import ItemList from '../ItemList';
  import { useEffect } from 'react';
-
+ import { useParams } from 'react-router-dom';
 
  const productos = [
-  { id: 1, nombre: "margarita",description:"planta", precio: 37 ,stock: 5,pictureUrl:""},
-  { id: 2, nombre: "cosmos",description:"planta", precio: 27,stock: 5,pictureUrl:"" },
+  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"",},
+  { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"" },
   { id: 3, nombre: "lupinos",description:"planta", precio: 40, stock: 5,pictureUrl:""},
-  { id: 4, nombre: "monstera",description: "planta",precio: 55,stock: 5 ,pictureUrl:""},
-  { id: 5, nombre: "lavanda",description:"planta", precio: 11,stock: 5 ,pictureUrl:""},
-  { id: 6, nombre: "paspalum",description:"planta", precio: 19, stock: 5,pictureUrl:""},
-  { id: 7, nombre: "rosa", description:"planta", precio: 2,stock: 5,pictureUrl:""  }
+  { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:""},
+  { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:""},
+  { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:""},
+  { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:""  }
 ];
 
+let tarea = new Promise((resolve) => {
+  setTimeout(() => {
+  resolve(productos);        
+ }, 2000);
 
+});
 
-const ItemListContainer = ({greeting}) => {
+function ItemListContainer () {
+  const[productos,setProductos] =UseState()
+  const {category}= useParams ()
   
+
   useEffect(() => {
-       let tarea = new Promise((resolve) => {
-        setTimeout(() => {
-        resolve(productos);        
-       }, 2000);
-    
-  });
-
-  tarea.then((respuesta)=>(respuesta))
-}, []).
-
-
+    if(category===undefined){
+      tarea.then((respuesta)=>setProductos(respuesta))
+    }
+else{
+  tarea.then((respuesta)=>setProductos(respuesta.filter(r => category===r.categoria)))
+}
+},[category])
+  
+  
     return (
       <>
         <h2> Saludo: {greeting} </h2>
         <ItemCount stock="5" initial="1" />
       
-        <ItemList props={productos}/>
+        <ItemList productos={productos}/>
         
       </>
-    )
+    );
   }
   
   export default ItemListContainer;
