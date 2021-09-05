@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import ItemDetail from './ItemDetail';
+import ItemDetail from '../ItemDetail';
 import { useParams } from 'react-router-dom';
 
 
 
 const producto = { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""}
+
+let getProducto = new Promise((resolve) => {
+    setTimeout(() => {
+    resolve(producto)        
+   }, 2000);})
+
 
 function ItemDetailContainer() {
 
@@ -14,12 +20,7 @@ function ItemDetailContainer() {
     const {id}= useParams ()
 
 
-    let getProducto = new Promise((resolve) => {
-        setTimeout(() => {
-        resolve(producto)        
-       }, 2000);})
-
-       useEffect(()=>{
+      useEffect(()=>{
         getProducto.then(resp => 
         {
         setProducto(resp)
@@ -33,6 +34,8 @@ function ItemDetailContainer() {
         setLoading(false)
     })}, [id])
     
+
+   
     return (
         <>
             {loading ?

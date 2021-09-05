@@ -7,7 +7,7 @@
  const productos = [
   { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""},
   { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"" },
-  { id: 3, nombre: "lupinos",description:"planta", precio: 40, stock: 5,pictureUrl:""},
+  { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:""},
   { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:""},
   { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:""},
   { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:""},
@@ -35,7 +35,7 @@ else{
   tarea.then((respuesta)=>setProductos(respuesta.filter(r => category===r.categoria)))
 }
 },[category])
-  
+  console.log(category)
   
     return (
       <>

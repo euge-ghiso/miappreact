@@ -12,12 +12,14 @@ function NavBar(){
   <Navbar bg="primary" variant="dark">
   <CartWidget/>
     <Container>
-    <Navbar.Brand href="#home">Pachamama</Navbar.Brand>
+    
     <Nav className="me-auto">
-          
+    <Link to="/">
+    <Navbar.Brand href="#home">Pachamama</Navbar.Brand>
+      </Link>  
      
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Link to="/category/:categoryId">
+     
+      <Link to="/categoria/plantas">
       <Nav.Link href="#features">Plantas</Nav.Link>
       </Link>
       <Link to="/categoria/semillas">
