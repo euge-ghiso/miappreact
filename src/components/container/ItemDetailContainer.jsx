@@ -4,43 +4,47 @@ import ItemDetail from '../ItemDetail';
 import { useParams } from 'react-router-dom';
 
 
-
-const producto = { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""}
-
-let getProducto = new Promise((resolve) => {
-    setTimeout(() => {
-    resolve(producto)        
-   }, 2000);})
-
-
+const productos = [
+    { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""},
+    { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"" },
+    { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:""},
+    { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:""},
+    { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:""},
+    { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:""},
+    { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:""  }
+  ];
+  
 function ItemDetailContainer() {
 
-    const [producto, setProducto] = useState({})
+    const [producto, setProducto] = useState([])
     const [loading, setLoading] = useState(true)
-    const {id}= useParams ()
+    const {item}= useParams ()
+   
+let getProducto = new Promise((resolve,reject) => {
+    setTimeout(() => {
+    productos ? resolve(producto) : reject("no hay productos");   
 
-
-      useEffect(()=>{
-        getProducto.then(resp => 
-        {
-        setProducto(resp)
-        setLoading(false)}
-        ,)});  
-
+   }, 2000);})
+     
+  
+   console.log(producto)
+   console.log(item)
+   
         useEffect(() => {
         getProducto.then(resp => 
          {
          setProducto(resp)
-        setLoading(false)
-    })}, [id])
+         setLoading(false)
+    }
+    )}, [producto,item])
     
-
-   
+console.log(item)
     return (
         <>
+        
             {loading ?
-            <h2>Aguarde unos segundos....</h2> : 
-            <ItemDetail producto={producto} /> }
+            <h2>Aguarde unos segundos.... </h2> : 
+           <ItemDetail producto={producto} /> }
            
         </>
     );

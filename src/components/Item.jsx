@@ -7,12 +7,16 @@ function Item ({producto}) {
 return (   
     <div> 
 
-
+<label>Soy el ITEM</label>
     <Card style={{ width: '18rem' }}>
     <Card.Img variant="top" src="holder.js/100px180" />
     <Card.Body>
-      <Link to="/item/:id">
-          <Card.Title>{producto.nombre}</Card.Title>
+      <Link to="/nombre/:item">
+          <Card.Title>NOMBRE{producto.nombre}</Card.Title>
+      </Link>
+      <Link to="/id/:item">
+        
+        <Card.Title>ID  {producto.id}</Card.Title>
       </Link>
       <Card.Text>
       {producto.pictureurl}

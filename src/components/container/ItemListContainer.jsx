@@ -3,6 +3,7 @@
  import ItemList from '../ItemList';
  import { useEffect,useState } from 'react';
  import { useParams } from 'react-router-dom';
+ 
 
  const productos = [
   { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""},
@@ -24,7 +25,6 @@ let tarea = new Promise((resolve) => {
 function ItemListContainer() {
 
   const[productos, setProductos] = useState([])
-
   const {category} = useParams ()
   
   useEffect(() => {
@@ -42,7 +42,7 @@ else{
         
         <ItemCount stock="5" initial="1" />
       
-        <ItemList productos={productos}/>
+        <ItemList productos={productos} />
         
       </>
     );
