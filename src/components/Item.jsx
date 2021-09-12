@@ -7,9 +7,10 @@ function Item ({producto}) {
 return (   
     <div> 
 
-<label>Soy el ITEM</label>
-    <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="holder.js/100px180" />
+
+    <Card style={{ width: '50rem' }}>
+    {producto.precio} 
+
     <Card.Body>
       <Link to="/nombre/:item">
           <Card.Title>NOMBRE{producto.nombre}</Card.Title>
@@ -18,20 +19,20 @@ return (
         
         <Card.Title>ID  {producto.id}</Card.Title>
       </Link>
+      <img src= {producto.pictureUrl}/>
+     
       <Card.Text>
-      {producto.pictureurl}
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
+      
+      {producto.categoria}
       </Card.Text>
      <Link to="/detalle">
            <Button variant="primary">detalle</Button>
+           
       </Link>
     </Card.Body>
   </Card>
     
-            <div>
-                 {producto.precio} 
-            </div>
+            
         </div>   
     
     );

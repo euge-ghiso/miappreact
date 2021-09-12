@@ -6,13 +6,13 @@
  
 
  const productos = [
-  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:""},
-  { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"" },
-  { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:""},
-  { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:""},
-  { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:""},
-  { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:""},
-  { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:""  }
+  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"../imagenes/planta1.jpg"},
+  { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"../imagenes/planta2.jpg" },
+  { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:"../imagenes/planta3.jpg"},
+  { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:"../imagenes/planta4.jpg"},
+  { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:"../imagenes/planta5.jpg"},
+  { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:"../imagenes/planta6.jpg"},
+  { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:"../imagenes/planta7.jpg"  }
 ];
 
 let tarea = new Promise((resolve) => {
