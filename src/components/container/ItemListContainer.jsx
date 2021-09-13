@@ -3,9 +3,10 @@
  import ItemList from '../ItemList';
  import { useEffect,useState } from 'react';
  import { useParams } from 'react-router-dom';
+
  
 
- const productos = [
+ const items = [
   { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"../imagenes/planta1.jpg"},
   { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"../imagenes/planta2.jpg" },
   { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:"../imagenes/planta3.jpg"},
@@ -15,37 +16,52 @@
   { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:"../imagenes/planta7.jpg"  }
 ];
 
-let tarea = new Promise((resolve) => {
-  setTimeout(() => {
-  resolve(productos);        
- }, 2000);
-
-});
 
 function ItemListContainer() {
 
-  const[productos, setProductos] = useState([])
-  const {category} = useParams ()
+  const[productos, setProductos] = useState([]);
+  const {categoria} = useParams ()
   
-  useEffect(() => {
-    if(category===undefined){
-      tarea.then((respuesta)=>setProductos(respuesta))
+console.log("category",categoria)
+
+  
+  useEffect (() => {
+    let tarea = new Promise((resolve,reject) => {
+      setTimeout(() => {
+     items && items.length ? resolve (items) : reject ("error 404")        
+     }, 2000);
+    
+    });
+
+   if (categoria) 
+   {
+    console.log("es categoria")
+      tarea.then((respuesta) => {setProductos(respuesta.filter( r => categoria===r.categoria) ) })
+      
     }
-else{
-  tarea.then((respuesta)=>setProductos(respuesta.filter(r => category===r.categoria)))
-}
-},[category])
-  console.log(category)
+    
+else
+{
+  tarea.then(
+    (respuesta)=>{setProductos(respuesta)}
+  )}
+ 
+} ,[categoria])
+
+
+  console.log(items)
   
     return (
       <>
         
         <ItemCount stock="5" initial="1" />
       
-        <ItemList productos={productos} />
+        <ItemList items={productos} />
+       
+       
         
       </>
-    );
+    )
   }
   
   export default ItemListContainer;

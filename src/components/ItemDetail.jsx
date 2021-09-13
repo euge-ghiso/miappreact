@@ -1,23 +1,24 @@
 //hacer estilos de card y las fotos llamar a titulo precio detalle imagen
 
 
-function ItemDetail ({producto}) {
-console.log(producto)
+function ItemDetail ({item}) {
+
+console.log("itemdetail",item)
 
     return (
         <>
             <label>Soy el detalle</label>
             <div className='card w-50'>
                 <div className="container">
-                    <label>{producto.nombre}</label>
-                    <img src= {producto.pictureUrl}/>
+           
+                    <img src= {item.pictureUrl}/>
 
                 </div>
                 <div className="container">
-                    <img  src={producto.url} className="w-25" />
+                    <img  src={item.pictureUrl} className="w-25" />
                     <br/>
-                    <label>{producto.categoria}</label>
-                    <label>{producto.precio}</label>
+                    <label>{item.categoria}</label>
+                    <label>{item.precio}</label>
                 </div>
                 <div className="container">
                   
@@ -26,7 +27,7 @@ console.log(producto)
             </div>
 
 
-            <label>Soy el detalle {producto.id}</label>
+            <label>Soy el detalle {item.id}</label>
 
           
 

@@ -3,19 +3,19 @@ import ItemDetail from './ItemDetail';
 
 
 
-const ItemList =({productos})=> {
+const ItemList =({items})=> {
           
       return (
           <div>
             <ul>
-                 {productos.map((producto) => <Item key={producto.id}  producto ={producto} /> )}  
-                 {productos.map((producto) => <ItemDetail key={producto.id}  producto ={producto} /> )}  
+                 {items.map((item) => <Item key={item.id}  item ={item} /> )}  
+                
 
 
 
                  
             </ul>
-            
+           
            </div>
     );
 }

@@ -19,10 +19,10 @@ function NavBar(){
       </Link>  
      
      
-      <Link to="/categoria/plantas">
+      <Link to={"/category/planta"}>
       <Nav.Link href="#features">Plantas</Nav.Link>
       </Link>
-      <Link to="/categoria/semillas">
+      <Link to={"/category/semilla"}>
       <Nav.Link href="#pricing">Semillas</Nav.Link>
       </Link>
     </Nav>

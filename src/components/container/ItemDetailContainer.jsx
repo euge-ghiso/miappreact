@@ -4,7 +4,7 @@ import ItemDetail from '../ItemDetail';
 import { useParams } from 'react-router-dom';
 
 
-const productos = [
+const items = [
     { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"../imagenes/planta1.jpg"},
     { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"../imagenes/planta2.jpg" },
     { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:"../imagenes/planta3.jpg"},
@@ -13,38 +13,41 @@ const productos = [
     { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:"../imagenes/planta6.jpg"},
     { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:"../imagenes/planta7.jpg"  }
   ];
-  
+
 function ItemDetailContainer() {
 
-    const [producto, setProducto] = useState([])
+    const [productoDetalle, setProductoDetalle] = useState([])
     const [loading, setLoading] = useState(true)
-    const {item}= useParams ()
+    const {id}= useParams ()
    
-let getProducto = new Promise((resolve,reject) => {
-    setTimeout(() => {
-    productos ? resolve(producto) : reject("no hay productos");   
-
-   }, 2000);})
-     
+          
+  // console.log("item::",item.nombre);
   
-   console.log(producto)
-   console.log(item)
    
         useEffect(() => {
+
+            let getProducto = new Promise((resolve,reject) => {
+                setTimeout(() => {
+                items ? resolve(items) : reject("no hay productos");   
+            
+               }, 2000);})
+
         getProducto.then(resp => 
          {
-         setProducto(resp)
+         setProductoDetalle(resp[id-1])
          setLoading(false)
-    }
-    )}, [producto,item])
+         console.log("itemdetailcontainer",resp[id-1])
+    })
+}, [items, id])
     
-console.log(item)
+console.log(id)
+
     return (
         <>
         
             {loading ?
             <h2>Aguarde unos segundos.... </h2> : 
-           <ItemDetail producto={producto} /> }
+           <ItemDetail item={productoDetalle} /> }
            
         </>
     );

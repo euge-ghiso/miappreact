@@ -2,32 +2,32 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'; 
 
-function Item ({producto}) {
+function Item ({item}) {
     
 return (   
     <div> 
 
 
     <Card style={{ width: '50rem' }}>
-    {producto.precio} 
+    {item.precio} 
 
     <Card.Body>
-      <Link to="/nombre/:item">
-          <Card.Title>NOMBRE{producto.nombre}</Card.Title>
+      <Link to={"/detalle/"+ item.id}>
+          <Card.Title>NOMBRE {item.nombre}</Card.Title>
       </Link>
-      <Link to="/id/:item">
+      
         
-        <Card.Title>ID  {producto.id}</Card.Title>
-      </Link>
-      <img src= {producto.pictureUrl}/>
+        <Card.Title>ID  {item.id}</Card.Title>
+      
+      <img src= {item.pictureUrl}/>
      
       <Card.Text>
       
-      {producto.categoria}
+      {item.categoria}
       </Card.Text>
-     <Link to="/detalle">
+     <Link to={"/detalle/"+ item.id}>
            <Button variant="primary">detalle</Button>
-           
+
       </Link>
     </Card.Body>
   </Card>
