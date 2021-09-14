@@ -1,10 +1,18 @@
 //hacer estilos de card y las fotos llamar a titulo precio detalle imagen
 
 import ItemCount from './ItemCount';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemDetail ({item,onAdd}) {
+function ItemDetail ({item}) { 
 
+    const [cambioBoton, setCambiarBoton] = useState(false)
+
+    const onAdd =(estado) =>{
+        
+        setCambiarBoton(true)
+      }
+    //const [enCarrito, setCarrito] = useState(false)
 console.log("itemdetail",item)
 
     return (
@@ -24,8 +32,10 @@ console.log("itemdetail",item)
                 </div>
                 <div className="container">
              
-             <ItemCount stock="5" initial="1"  estado >0 ? {onAdd} : <Link to="/cart"><button>Finalizar Compra</button>  </Link>   </ItemCount>
-             
+                <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  
+
+              
+             { cambioBoton&&<Link to={"/cart"}><button> finalizar compra</button></Link>}
                 </div>           
             </div>
             <label>Soy el detalle {item.id}</label>      
@@ -33,7 +43,7 @@ console.log("itemdetail",item)
    
       
         </>    
-        )
+        );
 }
 
 export default ItemDetail;

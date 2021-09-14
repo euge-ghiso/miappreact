@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar/NavBar'; 
 import ItemListContainer from './components/container/ItemListContainer'; 
 import ItemDetailContainer from './components/container/ItemDetailContainer'; 
-
+import ItemDetail from './components/ItemDetail';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -21,10 +21,10 @@ function App() {
             <Route exact path="/detalle/:id" > <ItemDetailContainer/></Route>
             <Route exact path="/cart"> <ItemDetail/> </Route>
           </Switch>
-
+          
        </div>
    </Router>
-
+  
       );
 }
 

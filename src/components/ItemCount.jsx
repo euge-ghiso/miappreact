@@ -1,49 +1,51 @@
 import { useState } from 'react';
-import ItemDetail from '../ItemDetail';
 
- function ItemCount({ stock, initial }) {
+
+
+ function ItemCount({ stock,cambioBoton,onAdd,initial}) {
    
     const [estado, setEstado] = useState(0)
     const sinStock="tu pedido supera el stock!!   "
     
+    //const [estado, setEstado] = useState(0)
+    
+const sumaCarro=()=>{
 
-    const sumaCarro=()=>{
-      
-      estado > stock ?(
-     alert("no hay stock"))
-    :   
-    setEstado(estado +1)
-    }
+  setEstado(estado+1)
+}
     
     const restaCarro=()=>{
-        estado > 0 ?
+      if(estado > initial )
       setEstado(estado -1) 
-      : (console.log (stock))   
-    }
-    
-    const onAdd =() =>{
-      console.log(`la cantidad es: ${estado}`)
-      alert(`la cantidad es: ${estado}`)
-      
-    }
-
         
+    }
+    const handlerOnAdd=()=>{
+      onAdd(estado)
+    setEstado(initial)
+     
+      
+  }
+
+  
+       
        return(
       <>
         <div>
-          {estado >stock ? sinStock :  <p> hay stock</p> }
+          {estado >stock ? sinStock :  <p> hay stock {stock} unidades</p> }
+
         <label> {estado}  unidades en pedido   </label>
-        <label> {stock}   unidades en stock </label>
-          
+       
         <button onClick={sumaCarro}> + </button> 
         
         <button onClick={restaCarro}> - </button> 
-        <button className="btn btn-outline-primary btn-block" onClick={onAdd}>Agregar</button>
-    
+
+        {!cambioBoton&&
+        <button className="btn btn-outline-primary btn-block" onClick={handlerOnAdd}>Agregar</button>
+      }
         </div>  
 
-       <ItemDetail onAdd={onAdd} />   
+         
       </>      
-    )
+    );
 }
-export default ItemCount
+export default ItemCount;
