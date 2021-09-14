@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 function App() {
+  
+  
   return (
     <Router>
       <div>
@@ -17,8 +19,7 @@ function App() {
            <Route exact path="/category/:categoria" > <ItemListContainer/></Route>
             <Route exact path="/" > <ItemListContainer/></Route>
             <Route exact path="/detalle/:id" > <ItemDetailContainer/></Route>
-              
-                           
+            <Route exact path="/cart"> <ItemDetail/> </Route>
           </Switch>
 
        </div>

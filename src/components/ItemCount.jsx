@@ -1,47 +1,49 @@
 import { useState } from 'react';
+import ItemDetail from '../ItemDetail';
 
- function ItemCount({ stock, initial,  onAdd })
- {
+ function ItemCount({ stock, initial }) {
    
-    const [count, setCount] = useState(initial);
-    const sinStock="tu pedido supera el stock!!   ";
+    const [estado, setEstado] = useState(0)
+    const sinStock="tu pedido supera el stock!!   "
+    
 
     const sumaCarro=()=>{
       
-      setCount > stock ?(
+      estado > stock ?(
      alert("no hay stock"))
     :   
-    setCount(count +1)
+    setEstado(estado +1)
     }
     
     const restaCarro=()=>{
-        count > 0 ?
-      setCount(count -1) 
+        estado > 0 ?
+      setEstado(estado -1) 
       : (console.log (stock))   
-    };
-
+    }
     
-    const handlerOnAdd=()=>{
-      onAdd(count)
-      setCount(initial)
-  }
+    const onAdd =() =>{
+      console.log(`la cantidad es: ${estado}`)
+      alert(`la cantidad es: ${estado}`)
+      
+    }
 
-    
-    return(
-        <div>
-          {count >stock ? sinStock :  <p> hay stock</p> }
-        <label> {count}  unidades en pedido   </label>
-        <label> {stock}   unidades en stock </label>
         
-        <button onClick={sumaCarro}> +</button> 
-        <label> {stock}   cantidad </label>
-        <button onClick={restaCarro}> -</button> <br />
-        <button className="btn btn-outline-primary btn-block" onClick={handlerOnAdd}>Agregar</button>
-        </div>           
+       return(
+      <>
+        <div>
+          {estado >stock ? sinStock :  <p> hay stock</p> }
+        <label> {estado}  unidades en pedido   </label>
+        <label> {stock}   unidades en stock </label>
+          
+        <button onClick={sumaCarro}> + </button> 
+        
+        <button onClick={restaCarro}> - </button> 
+        <button className="btn btn-outline-primary btn-block" onClick={onAdd}>Agregar</button>
+    
+        </div>  
+
+       <ItemDetail onAdd={onAdd} />   
+      </>      
     )
 }
-
-
 export default ItemCount
-
-       
