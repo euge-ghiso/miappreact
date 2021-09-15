@@ -3,8 +3,22 @@
 import ItemCount from './ItemCount';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Cart from '../components/Cart/Cart';
+
+
+//const {id}= useParams ()
+//const itemId="1"
+//if (itemId===id){
+
+
+
+
+
+
 
 function ItemDetail ({item}) { 
+   
 
     const [cambioBoton, setCambiarBoton] = useState(false)
 
@@ -15,8 +29,11 @@ function ItemDetail ({item}) {
     //const [enCarrito, setCarrito] = useState(false)
 console.log("itemdetail",item)
 
+
     return (
         <>
+        <Cart item={item} /> 
+       
             <label>Soy el detalle</label>
             <div className='card w-50'>
                 <div className="container">
