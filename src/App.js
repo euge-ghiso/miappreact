@@ -15,7 +15,7 @@ function App() {
   
   
   return (
-    <CartContexProvider value={[]}>
+    <CartContexProvider>
     <Router>
       <div>
 
@@ -25,7 +25,7 @@ function App() {
             <Route exact path="/" > <ItemListContainer/></Route>
             <Route exact path="/detalle/:id" > <ItemDetailContainer/></Route>
             <Route exact path="/item/:id" > <ItemDetailContainer/></Route>
-            <Route exact path="/cart"> <Cart/> </Route>
+          <Route exact path="/cart"> <Cart/> </Route>
           </Switch>
           
        </div>

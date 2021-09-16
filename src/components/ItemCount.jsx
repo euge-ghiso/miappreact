@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 
 
- function ItemCount({ stock,cambioBoton,onAdd,initial,addItem,clear}) {
+ function ItemCount({ stock,cambioBoton,onAdd,initial,clear}) {
    
     const [estado, setEstado] = useState(0)
     const sinStock="tu pedido supera el stock!!   "
     
     //const [estado, setEstado] = useState(0)
+
+    const {addItem} = useContext(CartContext);
     
 const sumaCarro=()=>{
 
@@ -21,9 +24,10 @@ const sumaCarro=()=>{
     }
     const handlerOnAdd=()=>{
       onAdd(estado)
-    setEstado(initial)
-     
-      
+    //setEstado(initial)
+    
+     addItem({Producto: 'Producto'},1);
+    
   }
 
        
@@ -33,7 +37,7 @@ const sumaCarro=()=>{
           {estado >stock ? sinStock :  <p> hay stock {stock} unidades</p> }
 
         <label> {estado}  unidades en pedido   </label>
-          
+         
         <button onClick={restaCarro}> - </button> 
         <button onClick={sumaCarro}> + </button> 
 

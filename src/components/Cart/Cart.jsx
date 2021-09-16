@@ -2,21 +2,22 @@ import {useContext} from "react";
 //import useCartContext from '../../context/CartContext';
 import CartContext from '../../context/CartContext';
 import { useParams } from 'react-router-dom';
-import ItemCount from '../ItemCount';
 
 
-function Cart ({item)} {
+
+
+function Cart () {
     const {id} = useParams()
     const {addItem, setCarrito, carrito, removeItem} = useContext(CartContext)
-    //tiene que venir del dato que eligio el usuario al agregar
-    const itemId = item.id
+    
+    const itemId = 1
     const clear = () => setCarrito([])
 
     if(itemId === id) {
 
     return (
         <div>
-           <ItemCount addItem={addItem} />
+           <p>{addItem}  </p> 
             <button onClick={clear}>Borrar items</button>
 			{carrito.length > 0 && (
 				carrito.map(element => {

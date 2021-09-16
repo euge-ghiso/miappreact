@@ -1,17 +1,16 @@
 import {createContext,useContext} from "react";
 import { useState } from 'react';
 
-const CartContext=createContext()
+export const CartContext=createContext()
 
 //export const useCartContext = () => useContext(CartContext)
 
-function CartContextProvider({children}){
+export function CartContextProvider({children}){
 
     const [carrito, setCarrito] = useState([]);
 
-
-
-    const addItem=(item,quantity)=> {
+       const addItem=(item,quantity)=> {
+console.log("llegue al additem del context! :D");
         if(isInCart(item.id)) {
 			const updateCart = [...carrito];
 
@@ -40,7 +39,9 @@ function CartContextProvider({children}){
     const clear = () => setCarrito([])
 
 
-
+//console.log(carrito)
+//console.log (item)
+//console.log(item.id)
 
 
 return(
