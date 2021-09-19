@@ -3,29 +3,26 @@
 import ItemCount from './ItemCount';
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import Cart from '../components/Cart/Cart';
-import CartContext from '../context/CartContext';
+import {CartContext} from '../context/CartContext';
 
 function ItemDetail ({item}) { 
    
 
     const [cambioBoton, setCambiarBoton] = useState(false)
-
-
-    const prueba= useContext(CartContext);
+    const {addItem}= useContext(CartContext)
+  
     const onAdd =(estado) =>{
-        
+        alert(estado)
         setCambiarBoton(true)
+        addItem(item,estado)
       }
-    //const [enCarrito, setCarrito] = useState(false)
+    
 console.log("itemdetail",item)
 
 
     return (
         <>
-       
-       
+              
             <label>Soy el detalle</label>
             <div className='card w-50'>
                 <div className="container">
@@ -44,14 +41,13 @@ console.log("itemdetail",item)
                 <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  
 
               
-             { cambioBoton&&<Link to={"/cart"}><button> finalizar compra</button></Link>}
+            
                 </div>           
             </div>
             <label>Soy el detalle {item.id}</label>      
-              
+             
    
-      
-        </>    
+              </>    
         );
 }
 

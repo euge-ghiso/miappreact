@@ -1,10 +1,21 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
+import Navbar from 'react-bootstrap/Navbar';
+import { NavLink } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
 import CartWidget from '../CartWidget';
 import { Link } from 'react-router-dom';
+import {CartContext} from '../../context/CartContext';
+import { useContext } from 'react';
+
+
+
 
 function NavBar(){
+
+  const {iconCart} = useContext(CartContext)
+
+  console.log(iconCart())
+
     return (
         
             <>
@@ -25,6 +36,13 @@ function NavBar(){
       <Link to={"/category/semilla"}>
       <Nav.Link href="#pricing">Semillas</Nav.Link>
       </Link>
+
+      <Nav.Link className="ml-2">
+                        <NavLink to={`/cart`} style={{textDecoration: 'none'}} className="text-secondary"  activeClassName="text-red">
+                                { iconCart() } cart                            
+                        </NavLink>                
+       </Nav.Link> 
+
     </Nav>
 
     </Container>

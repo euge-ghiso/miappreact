@@ -1,51 +1,54 @@
-import {createContext,useContext} from "react";
-import { useState } from 'react';
+import {createContext,useState } from "react";
 
-export const CartContext=createContext()
-
-//export const useCartContext = () => useContext(CartContext)
+export const CartContext = createContext()
 
 export function CartContextProvider({children}){
+	
+    const [carrito, setCarrito] = useState([])
 
-    const [carrito, setCarrito] = useState([]);
+	const addItem = (item, quantity) => {
 
-       const addItem=(item,quantity)=> {
-console.log("llegue al additem del context! :D");
-        if(isInCart(item.id)) {
-			const updateCart = [...carrito];
-
-			updateCart.forEach((element) => {
-				if(element.item.id === item.id) {
-					element.quantity += quantity
-				}
-			})
-			setCarrito(updateCart)
-		} else {
+		const index = carrito.findIndex(i => i.item.id === item.id)
+  
+		  if (index > -1) {
+			const oldQy = carrito[index].quantity
+  
+			carrito.splice(index, 1)
+			setCarrito([...carrito, { item, quantity: quantity + oldQy}])
+		  }
+		  else {
 			setCarrito([...carrito, {item, quantity}])
-		}
-        
-    }
-    
-    const isInCart = (id) => {
-		return carrito.find(element => element.item.id === id)
-	}
+		  }
+	  }
+  
 
-	const removeItem = (itemId) => {
-		const cartFilter = carrito.filter(element => element.item.id !== itemId)
-		return setCarrito(cartFilter)
-	}
-
+	const removeItem = (item) => {
+		 
+		const deleteProduct = carrito.filter((prod) => prod.item.id !== item.item.id);
+  
+		setCarrito([...deleteProduct]);
+	  };   
+  
 
     const clear = () => setCarrito([])
 
+	const iconCart = () => {
+		return carrito.reduce( (acum, valor)=> acum + valor.quantity, 0) 
+	
+	  }
+  
+	  const precioTotal =()=>{
+		return carrito.reduce((acum, valor)=>(acum + (valor.quantity * valor.item.precio)), 0) 
+	  }
+  
 
-//console.log(carrito)
-//console.log (item)
+console.log(carrito)
+
 //console.log(item.id)
 
 
 return(
-    <CartContext.Provider value={{addItem, removeItem, carrito, setCarrito,clear}}>
+    <CartContext.Provider value={{carrito,addItem,iconCart,precioTotal, removeItem,setCarrito,clear}}>
 {children}
     </CartContext.Provider>
 

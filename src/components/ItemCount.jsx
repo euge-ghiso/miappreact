@@ -1,16 +1,17 @@
 import { useState, useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { Link } from 'react-router-dom';
 
 
 
- function ItemCount({ stock,cambioBoton,onAdd,initial,clear}) {
+
+ function ItemCount({ stock,cambioBoton,onAdd,initial}) {
    
     const [estado, setEstado] = useState(0)
     const sinStock="tu pedido supera el stock!!   "
     
     //const [estado, setEstado] = useState(0)
 
-    const {addItem} = useContext(CartContext);
+    
     
 const sumaCarro=()=>{
 
@@ -25,8 +26,8 @@ const sumaCarro=()=>{
     const handlerOnAdd=()=>{
       onAdd(estado)
     //setEstado(initial)
-    
-     addItem({Producto: 'Producto'},1);
+    window.confirm('Esta seguro?')
+     
     
   }
 
@@ -40,12 +41,22 @@ const sumaCarro=()=>{
          
         <button onClick={restaCarro}> - </button> 
         <button onClick={sumaCarro}> + </button> 
+        { cambioBoton && 
+                <div>
+                    <Link to='/cart'>
+                        <button className="btn btn-outline-primary btn-block">Terminar compra</button>
+                    </Link>
+                    <Link to='/'>
+                        <button className="btn btn-outline-primary btn-block">Seguir Comprando</button>
+                    </Link>
+                </div>
+            }   
+
 
         {!cambioBoton&&
         <button className="btn btn-outline-primary btn-block" onClick={handlerOnAdd}>Agregar</button>
       }
 
-        <button onClick={clear}>Vaciar Carrito</button>
         </div>  
 
          

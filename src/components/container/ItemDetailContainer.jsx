@@ -49,7 +49,7 @@ console.log(id)
             <h2>Aguarde unos segundos.... </h2> : 
            <ItemDetail item={productoDetalle} /> }
            <div>
-           
+          /
            </div>
         </>
     );
