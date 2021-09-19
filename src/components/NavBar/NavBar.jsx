@@ -12,7 +12,7 @@ import { useContext } from 'react';
 
 function NavBar(){
 
-  const {iconCart} = useContext(CartContext)
+  let {iconCart} = useContext(CartContext)
 
   console.log(iconCart())
 
@@ -21,7 +21,7 @@ function NavBar(){
             <>
   
   <Navbar bg="primary" variant="dark">
-  <CartWidget/>
+
     <Container>
     
     <Nav className="me-auto">
@@ -37,11 +37,8 @@ function NavBar(){
       <Nav.Link href="#pricing">Semillas</Nav.Link>
       </Link>
 
-      <Nav.Link className="ml-2">
-                        <NavLink to={`/cart`} style={{textDecoration: 'none'}} className="text-secondary"  activeClassName="text-red">
-                                { iconCart() } cart                            
-                        </NavLink>                
-       </Nav.Link> 
+     
+       <CartWidget/>
 
     </Nav>
 

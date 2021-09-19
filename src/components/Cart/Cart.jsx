@@ -26,9 +26,11 @@ function Cart  () {
                {carrito > "0" ?
               
               <button onClick={clear} >Borrar listado Cart</button>
-                 : <Link to='/'>
-                 <button className="btn btn-outline-primary btn-block"> Carrito Vacio Comprar!</button>
-             </Link>
+                 : 
+                 <Link to='/'>
+                 <button className="btn btn-outline-danger btn-block"> Carrito Vacio Comprar!</button>
+                 </Link>
+                 
               }
                
                
