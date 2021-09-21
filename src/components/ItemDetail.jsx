@@ -40,13 +40,11 @@ console.log("itemdetail",item)
              
                 <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  
 
-              
-            
+                          
                 </div>           
             </div>
             <label>Soy el detalle {item.id}</label>      
-             
-   
+                
               </>    
         );
 }

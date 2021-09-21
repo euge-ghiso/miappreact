@@ -6,7 +6,7 @@ export function CartContextProvider({children}){
 	
     const [carrito, setCarrito] = useState([])
 
-	const addItem = (item, quantity) => {
+	let addItem = (item, quantity) => {
 
 		const index = carrito.findIndex(i => i.item.id === item.id)
   
@@ -22,13 +22,10 @@ export function CartContextProvider({children}){
 	  }
   
 
-	const removeItem = (item) => {
-		 
-		const deleteProduct = carrito.filter((prod) => prod.item.id !== item.item.id);
-  
-		setCarrito([...deleteProduct]);
-	  };   
-  
+	  const removeItem = (itemId) => {
+        const deleteProduct = carrito.filter((prod) => prod.item.id !== itemId);
+        setCarrito([...deleteProduct]);
+      };
 
     const clear = () => setCarrito([])
 

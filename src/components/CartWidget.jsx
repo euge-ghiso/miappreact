@@ -10,11 +10,25 @@ const CartWidget = () => {
   let {iconCart,carrito} = useContext(CartContext)
     return (
       <>
-        <Nav.Link className="ml-2">
-                        <NavLink to={`/cart`} style={{textDecoration: 'none'}} className="text-secondary"  activeClassName="text-red">
-                                { iconCart() } CARRITO  <img src="/imagenes/cart.png" />                          
-                        </NavLink>                
-       </Nav.Link> 
+
+
+{carrito < "0" ?
+              
+     <Nav.Link className="ml-2">
+     <NavLink to={`/cart`} style={{display: 'none'}} className="text-secondary"  activeClassName="text-red">
+       { iconCart() } CARRITO  <img src="/imagenes/cart.png" />                          
+     </NavLink>                
+     </Nav.Link> 
+     : 
+      <Nav.Link className="ml-2">
+      <NavLink to={`/cart`} style={{textDecoration: 'none'}} className="text-secondary"  activeClassName="text-red">
+        { iconCart() } CARRITO                         
+       </NavLink>                            
+       </Nav.Link>    
+              }
+               <img src="/imagenes/cart.png" />  
+               
+        
      
       </>
     )
