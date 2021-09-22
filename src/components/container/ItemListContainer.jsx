@@ -1,55 +1,51 @@
  import "../container/ItemListContainer.css"
-
+ import { getFirestore } from '../../service/getFirebase';
  import ItemList from '../ItemList';
  import { useEffect,useState } from 'react';
  import { useParams } from 'react-router-dom';
-
+// import  getFirestore  from '../../service/getFirebase';
  
-
- const items = [
-  { id: 1, nombre: "margarita",categoria:"planta", precio: 37 ,stock: 5,pictureUrl:"../imagenes/planta1.jpg"},
-  { id: 2, nombre: "cosmos",categoria:"planta", precio: 27,stock: 5,pictureUrl:"../imagenes/planta2.jpg" },
-  { id: 3, nombre: "lupinos",categoria:"planta", precio: 40, stock: 5,pictureUrl:"../imagenes/planta3.jpg"},
-  { id: 4, nombre: "monstera",categoria: "semilla",precio: 55,stock: 5 ,pictureUrl:"../imagenes/planta4.jpg"},
-  { id: 5, nombre: "lavanda",categoria:"semilla", precio: 11,stock: 5 ,pictureUrl:"../imagenes/planta5.jpg"},
-  { id: 6, nombre: "paspalum",categoria:"semilla", precio: 19, stock: 5,pictureUrl:"../imagenes/planta6.jpg"},
-  { id: 7, nombre: "rosa", categoria:"planta", precio: 2,stock: 5,pictureUrl:"../imagenes/planta7.jpg"  }
-];
 
 
 function ItemListContainer() {
 
-  const[productos, setProductos] = useState([]);
-  const {categoria} = useParams ()
+  const[productos, setProductos] = useState([])
+  const [loading, setLoading] = useState(true)
+  const {categoryId} = useParams ()
+  const user = false
   
-console.log("category",categoria)
+console.log("category",categoryId)
 
   
   useEffect (() => {
-    let tarea = new Promise((resolve,reject) => {
-      setTimeout(() => {
-     items && items.length ? resolve (items) : reject ("error 404")        
-     }, 2000);
-    
-    });
-
-   if (categoria) 
-   {
-    console.log("es categoria")
-      tarea.then((respuesta) => {setProductos(respuesta.filter( r => categoria===r.categoria) ) })
-      
-    }
-    
-else
-{
-  tarea.then(
-    (respuesta)=>{setProductos(respuesta)}
-  )}
- 
-} ,[categoria])
+        let db = getFirestore()
+        let itmesCollection = db.collection('Items')
+        console.log(itmesCollection)
+        const dbQuery = categoryId ?  itmesCollection.where('categoryId', '==', categoryId) : itmesCollection
+        dbQuery.get().then(resp => {
+            if (resp.size === 0) {
+                console.log('No Result!!')
+            }
+            setProductos(resp.docs.map(item=> ({id: item.id, ...item.data()}) ))
+        })
+        .catch((error) => {
+            console.log("Error searching items", error)
+        }).finally(() => {
+            setLoading(false)
+        })
 
 
-  console.log(items)
+
+} ,[categoryId])
+
+
+if(user){
+  return <h1>Login</h1>
+}
+
+
+
+ // console.log(items)
   
     return (
       <>
