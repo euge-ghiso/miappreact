@@ -11,32 +11,52 @@ function ItemListContainer() {
 
   const[productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
-  const {categoryId} = useParams ()
+  const {categoria} = useParams ()
   const user = false
   
-console.log("category",categoryId)
+console.log("category",categoria)
 
   
   useEffect (() => {
         let db = getFirestore()
         let itmesCollection = db.collection('Items')
+
         console.log(itmesCollection)
-        const dbQuery = categoryId ?  itmesCollection.where('categoryId', '==', categoryId) : itmesCollection
-        dbQuery.get().then(resp => {
-            if (resp.size === 0) {
-                console.log('No Result!!')
-            }
-            setProductos(resp.docs.map(item=> ({id: item.id, ...item.data()}) ))
-        })
-        .catch((error) => {
-            console.log("Error searching items", error)
-        }).finally(() => {
-            setLoading(false)
-        })
+
+      if (categoria){
+
+        itmesCollection.where('categoriaID', '==', categoria).get().
+        then(resp => {
+          if (resp.size === 0) {
+              console.log('No Result!!')
+          }
+          setProductos(resp.docs.map(item=> ({id: item.data().id, ...item.data()}) ))
+      })
+      .catch((error) => {
+          console.log("Error searching items", error)
+      }).finally(() => {
+          setLoading(false)
+      })
+
+      } else{
+        itmesCollection.get().then(resp => {
+          if (resp.size === 0) {
+              console.log('No Result!!')
+          }
+          setProductos(resp.docs.map(item=> ({id: item.data().id, ...item.data()}) ))
+      })
+      .catch((error) => {
+          console.log("Error searching items", error)
+      }).finally(() => {
+          setLoading(false)
+      })
 
 
+      }
+     
 
-} ,[categoryId])
+
+} ,[categoria])
 
 
 if(user){

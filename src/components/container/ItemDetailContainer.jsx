@@ -19,23 +19,25 @@ function ItemDetailContainer() {
         useEffect(() => {
 
             let db = getFirestore()
-            let productoItem = db.collection('Items').doc("Ar7gdr7uayV7928kLPdf").get()
-          .then(data=>{
-              if(data.size===0){
+            let productoItem = db.collection('Items')
+            .doc("Ar7gdr7uayV7928kLPdf").get()
+          .then(resp=>{
+              if(resp.size===0){
               console.log("no hay nada")}
 
               
-              console.log(data) 
+              console.log(resp) 
 
-              setProductoDetalle({id: data.id, ...data.data()})
+              setProductoDetalle(
+                  {id: resp.data().id, ...resp.data()})
 
               
-              console.log(data.data())
-          })
+              console.log(resp.data())
+            })
 
-}, [])
+            }, [])
     
-console.log(id)
+            console.log(id)
 
     return (
         <>
