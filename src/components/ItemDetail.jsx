@@ -25,15 +25,12 @@ console.log("itemdetail",item)
               
             <label>Soy el detalle</label>
             <div className='card w-50'>
-                <div className="container">
-           
-                    <img src= {item.pictureUrl}/>
-                </div>
+                
                 
                 <div className="container">
-                    <img  src={item.pictureUrl} className="w-25" />
+                    <img  src={item.urlImagen} className="w-25" />
                     <br/>
-                    <label>{item.categoria}</label>
+                    <label>{item.categoriaID}</label>
                     <label>{item.precio}</label>
                 </div>
                 <div className="container">

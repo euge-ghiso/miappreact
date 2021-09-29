@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 
 
 function Cart  () {
-   
+
+    
     let {carrito, clear,precioTotal,removeItem} = useContext(CartContext)
     
        
+    
+
 
         return (
             <div>
@@ -36,6 +39,9 @@ function Cart  () {
                    
                    }
                 {precioTotal()}
+
+               
+
                 </div>
         
                 }

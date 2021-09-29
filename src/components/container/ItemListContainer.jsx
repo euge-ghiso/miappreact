@@ -19,18 +19,18 @@ console.log("category",categoria)
   
   useEffect (() => {
         let db = getFirestore()
-        let itmesCollection = db.collection('Items')
+        let itemsCollection = db.collection('Items')
 
-        console.log(itmesCollection)
+        console.log(itemsCollection)
 
       if (categoria){
 
-        itmesCollection.where('categoriaID', '==', categoria).get().
+        itemsCollection.where('categoriaID', '==', categoria).get().
         then(resp => {
           if (resp.size === 0) {
               console.log('No Result!!')
           }
-          setProductos(resp.docs.map(item=> ({id: item.data().id, ...item.data()}) ))
+          setProductos(resp.docs.map(item=> ({id: item.id, ...item.data()}) ))
       })
       .catch((error) => {
           console.log("Error searching items", error)
@@ -39,11 +39,11 @@ console.log("category",categoria)
       })
 
       } else{
-        itmesCollection.get().then(resp => {
+        itemsCollection.get().then(resp => {
           if (resp.size === 0) {
               console.log('No Result!!')
           }
-          setProductos(resp.docs.map(item=> ({id: item.data().id, ...item.data()}) ))
+          setProductos(resp.docs.map(item=> ({id: item.id, ...item.data()}) ))
       })
       .catch((error) => {
           console.log("Error searching items", error)

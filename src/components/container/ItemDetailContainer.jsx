@@ -14,13 +14,13 @@ function ItemDetailContainer() {
    
 
   // console.log("item::",item.nombre);
-  
+  //.doc("Ar7gdr7uayV7928kLPdf").get()
    
         useEffect(() => {
 
             let db = getFirestore()
-            let productoItem = db.collection('Items')
-            .doc("Ar7gdr7uayV7928kLPdf").get()
+            let productoDetalle = db.collection('Items')
+            .doc(id).get()
           .then(resp=>{
               if(resp.size===0){
               console.log("no hay nada")}
@@ -33,7 +33,9 @@ function ItemDetailContainer() {
 
               
               console.log(resp.data())
+              setLoading(false);
             })
+            
 
             }, [])
     
@@ -46,7 +48,7 @@ function ItemDetailContainer() {
             <h2>Aguarde unos segundos.... </h2> : 
            <ItemDetail item={productoDetalle} /> }
            <div>
-          /
+          
            </div>
         </>
     );

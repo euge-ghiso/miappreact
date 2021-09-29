@@ -9,7 +9,7 @@ return (
 
 
     <Card style={{ width: '50rem' }}>
-    {item.precio} 
+    
 
     <Card.Body>
       <Link to={"/detalle/"+ item.id}>
@@ -17,13 +17,13 @@ return (
       </Link>
       
         
-        <Card.Title>ID  {item.id}</Card.Title>
+        <Card.Title>{item.categoriaID}</Card.Title>
       
-      <img src= {item.pictureUrl}/>
+      <img src= {item.urlImagen}/>
      
       <Card.Text>
+      ${item.precio} 
       
-      {item.categoria}
       </Card.Text>
      <Link to={"/detalle/"+ item.id}>
            <Button variant="primary">detalle</Button>
