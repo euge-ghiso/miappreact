@@ -23,15 +23,19 @@ console.log("itemdetail",item)
     return (
         <>
               
-            <label>Soy el detalle</label>
+              <label>{item.nombre}</label>
             <div className='card w-50'>
                 
                 
                 <div className="container">
+               
                     <img  src={item.urlImagen} className="w-25" />
                     <br/>
                     <label>{item.categoriaID}</label>
-                    <label>{item.precio}</label>
+                    <br/>
+                    <label>$ {item.precio}</label>
+                    <br/>
+                    <label>Stock {item.stock}</label>
                 </div>
                 <div className="container">
              
@@ -40,7 +44,7 @@ console.log("itemdetail",item)
                           
                 </div>           
             </div>
-            <label>Soy el detalle {item.id}</label>      
+            <label>Soy el detalle</label>      
                 
               </>    
         );

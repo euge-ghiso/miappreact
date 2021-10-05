@@ -6,7 +6,7 @@ import { getFirestore } from "../../service/getFirebase";
 import firebase from "firebase";
 import 'firebase/firestore';
 import { useEffect,useState } from 'react';
-
+import { useParams } from 'react-router-dom';
 
 
 const Cart= ()=>  {
@@ -16,9 +16,8 @@ const Cart= ()=>  {
         email:"",
         tel:""
     };
-    
+const {id}= useParams ()
 const [formData, setFormData] = useState(initialForm)
-
 
     let {carrito, clear,precioTotal,removeItem} = useContext(CartContext)
     
@@ -29,7 +28,7 @@ function handleChange(e){
     setFormData(
         {
         ...formData,
-        [e.target.nombre]: e.target.value
+        [e.target.name]: e.target.value
     }
     )
 }
@@ -40,6 +39,8 @@ console.log(formData);
 function handleSubmit(e)
     {
     e.preventDefault()
+   
+ 
     const newOrder={
         buyer: formData,
         items: carrito,
@@ -52,12 +53,6 @@ function handleSubmit(e)
     const db = getFirestore()
     const orders = db.collection('orders')
 
-    //controlar si hay los productos que quiero agregar 
-/*db.collection("items").doc().update({
-    stock:
-})*/
-
-
 
    orders.add(newOrder)
   .then(resp => alert(`la orden de compra es: ${resp.id}`))
@@ -69,6 +64,14 @@ function handleSubmit(e)
 
 }
 
+/*
+//controlar si hay los productos que quiero agregar 
+.doc(id).get()
+
+    //actualizar productos  del stock
+db.collection("items").doc(id).update({
+    stock:
+})*/
 
         return (
             <div>
@@ -82,8 +85,9 @@ function handleSubmit(e)
                    :
                     carrito.map(pro =>
                              <div> 
-                                    <p>{ pro.item.nombre}</p>
+                                    <p>aca es cart{ pro.item.nombre}</p>
                                     <p>{ pro.quantity}</p>
+                                    <p>{ pro.item.categoriaID}</p>
                                      <button onClick={()=> removeItem(pro.item.id)} >Eliminar Producto</button>
                                      <button onClick={clear} >Borrar listado Cart</button>
                              </div>
@@ -92,6 +96,7 @@ function handleSubmit(e)
                    }
 
                 {precioTotal()}
+       
 
                 </div>
         
@@ -115,4 +120,3 @@ function handleSubmit(e)
     }
     
 export default Cart;
-

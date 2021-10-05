@@ -11,11 +11,7 @@ function ItemDetailContainer() {
     const [loading, setLoading] = useState(true)
     const {id}= useParams ()
     
-   
-
-  // console.log("item::",item.nombre);
-  //.doc("Ar7gdr7uayV7928kLPdf").get()
-   
+      
         useEffect(() => {
 
             let db = getFirestore()
@@ -25,14 +21,15 @@ function ItemDetailContainer() {
               if(resp.size===0){
               console.log("no hay nada")}
 
-              
               console.log(resp) 
 
               setProductoDetalle(
-                  {id: resp.data().id, ...resp.data()})
+                  {id: resp.id, ...resp.data()}
+                  )
 
               
               console.log(resp.data())
+              console.log(resp.data().stock)
               setLoading(false);
             })
             
@@ -40,7 +37,7 @@ function ItemDetailContainer() {
             }, [])
     
             console.log(id)
-
+           
     return (
         <>
         
