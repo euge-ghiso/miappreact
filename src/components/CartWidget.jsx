@@ -22,7 +22,7 @@ const CartWidget = () => {
      : 
       <Nav.Link className="ml-2">
       <NavLink to={`/cart`} style={{textDecoration: 'none'}} className="text-secondary"  activeClassName="text-red">
-        { iconCart() } CARRITO                         
+        { iconCart() } en Carrito                         
        </NavLink>                            
        </Nav.Link>    
               }

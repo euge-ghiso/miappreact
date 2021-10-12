@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -39,23 +40,28 @@ const sumaCarro=()=>{
 
         <label> {estado}  unidades en pedido   </label>
          
-        <button onClick={restaCarro}> - </button> 
-        <button onClick={sumaCarro}> + </button> 
+        <Button variant="secondary"  onClick={restaCarro}> - </Button> 
+        <Button variant="secondary" onClick={sumaCarro}> + </Button> 
         { cambioBoton && 
                 <div>
                     <Link to='/cart'>
-                        <button className="btn btn-outline-primary btn-block">Terminar compra</button>
+                        <Button className="btn btn-outline-dark btn-block">Terminar compra</Button>
                     </Link>
                     <Link to='/'>
-                        <button className="btn btn-outline-primary btn-block">Seguir Comprando</button>
+                        <Button className="btn btn-outline-dark btn-block">Seguir Comprando</Button>
                     </Link>
                 </div>
             }   
 
 
         {!cambioBoton&&
-        <button className="btn btn-outline-primary btn-block" onClick={handlerOnAdd}>Agregar</button>
+        <Button className="btn btn-outline-dark btn-block" onClick={handlerOnAdd}>Agregar</Button>
       }
+
+
+
+
+
 
         </div>  
 

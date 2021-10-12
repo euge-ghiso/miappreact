@@ -8,12 +8,12 @@ return (
     <div> 
 
 
-    <Card style={{ width: '50rem' }}>
+    <Card style={{ width: '25rem' }}>
     
 
     <Card.Body>
       <Link to={"/detalle/"+ item.id}>
-          <Card.Title>NOMBRE {item.nombre}</Card.Title>
+          <Card.Title> {item.nombre}</Card.Title>
       </Link>
       
         
@@ -26,7 +26,7 @@ return (
       
       </Card.Text>
      <Link to={"/detalle/"+ item.id}>
-           <Button variant="primary">detalle</Button>
+           <Button variant="dark">detalle</Button>
 
       </Link>
     </Card.Body>

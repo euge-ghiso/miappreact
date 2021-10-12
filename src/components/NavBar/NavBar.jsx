@@ -6,7 +6,7 @@ import CartWidget from '../CartWidget';
 import { Link } from 'react-router-dom';
 import {CartContext} from '../../context/CartContext';
 import { useContext } from 'react';
-
+import "../NavBar/NavBar.css";
 
 
 
@@ -20,7 +20,7 @@ function NavBar(){
         
             <>
   
-  <Navbar bg="primary" variant="dark">
+  <Navbar bg="dark" variant="dark">
 
     <Container>
     

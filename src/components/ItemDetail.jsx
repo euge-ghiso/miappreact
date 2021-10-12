@@ -4,6 +4,7 @@ import ItemCount from './ItemCount';
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {CartContext} from '../context/CartContext';
+import Card from 'react-bootstrap/Card';
 
 function ItemDetail ({item}) { 
    
@@ -22,29 +23,23 @@ console.log("itemdetail",item)
 
     return (
         <>
-              
-              <label>{item.nombre}</label>
-            <div className='card w-50'>
-                
-                
-                <div className="container">
-               
-                    <img  src={item.urlImagen} className="w-25" />
-                    <br/>
-                    <label>{item.categoriaID}</label>
+    <Card border="primary" style={{ width: '21rem' }}>
+    <Card.Header>{item.nombre}</Card.Header>
+    <Card.Body>
+    <img  src={item.urlImagen}  className="w-25"   />
+      <Card.Title>{item.categoriaID}</Card.Title>
+      <Card.Text>
+     
                     <br/>
                     <label>$ {item.precio}</label>
                     <br/>
                     <label>Stock {item.stock}</label>
-                </div>
-                <div className="container">
-             
-                <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  
-
-                          
-                </div>           
-            </div>
-            <label>Soy el detalle</label>      
+      </Card.Text>
+    </Card.Body>
+    <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  
+  </Card>
+  <br />
+                
                 
               </>    
         );

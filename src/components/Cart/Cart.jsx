@@ -7,13 +7,14 @@ import firebase from "firebase";
 import 'firebase/firestore';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import Button from 'react-bootstrap/Button';
 
 const Cart= ()=>  {
 
     const initialForm ={
         nombre:"",
         email:"",
+        email2:"",
         tel:""
     };
 const {id}= useParams ()
@@ -35,6 +36,8 @@ function handleChange(e){
 
 
 console.log(formData);
+console.log(formData.email)
+
 
 function handleSubmit(e)
     {
@@ -64,58 +67,73 @@ function handleSubmit(e)
 
 }
 
-/*
-//controlar si hay los productos que quiero agregar 
-.doc(id).get()
-
-    //actualizar productos  del stock
-db.collection("items").doc(id).update({
-    stock:
-})*/
 
         return (
+            <>
             <div>
                    
                 {
                   <div>
                   {!carrito.length ?
                    <Link to='/'>
-                   <button className="btn btn-outline-danger btn-block"> Carrito Vacio Comprar!</button>
+                   <Button className="btn btn-outline-danger btn-block"> Carrito Vacio Comprar!</Button>
                    </Link>
                    :
                     carrito.map(pro =>
                              <div> 
-                                    <p>aca es cart{ pro.item.nombre}</p>
-                                    <p>{ pro.quantity}</p>
+                                    <h2>{ pro.item.nombre}</h2>
+                                    <p>{ pro.quantity} cantidad </p>
+                                    <p>precio $ { pro.item.precio}</p>
                                     <p>{ pro.item.categoriaID}</p>
-                                     <button onClick={()=> removeItem(pro.item.id)} >Eliminar Producto</button>
-                                     <button onClick={clear} >Borrar listado Cart</button>
+                                   
+                                     <Button  variant="secondary" onClick={()=> removeItem(pro.item.id)} >Eliminar Producto</Button>
+                                     <Button  variant="secondary" onClick={clear} >Borrar listado Cart</Button>
                              </div>
                                  )
                    
                    }
 
-                {precioTotal()}
-       
+                <p>Total a pagar $ {precioTotal()}</p>
+               
 
                 </div>
         
                 }
 
                
-    <br />
+                <br />
 
-<form  onSubmit={handleSubmit}  onChange={handleChange}>
-    <input type="text"  placeholder="ingresa nombre" name="nombre" value={formData.nombre}/>
-    <input type="text"  placeholder="ingresa tel" name="tel" value={formData.tel} />
-    <input type="email" placeholder="ingresa email" name="email" value={formData.email} />
-    <input type="email" placeholder="confirme el mail" name="email2" />
-    <button >Terminar compra</button>
-    
-</form>
-<br />
+
+            <form  onSubmit={handleSubmit}  onChange={handleChange}>
+                <input type="text"  placeholder="ingresa nombre" name="nombre" value={formData.nombre}/>
+                <input type="text"  placeholder="ingresa tel" name="tel" value={formData.tel} />
+                <input type="email" placeholder="ingresa email" name="email" value={formData.email} />
+                <input type="email" placeholder="confirme el mail" name="email2" value={formData.email2} />
+                {
+                    formData.email != formData.email2
+                     ? 
+                    <button disabled={true}   >Terminar compra</button>
+                    :   <button  >Terminar compra</button>
+                }
+              
+            </form>
+            
+            
+            <br />
+            <div>
+                {
+                  
+                   
+                    
+                  
+                   
+                   
+                   
+                }
+            </div>
               
             </div>
+            </>
         )
     }
     
