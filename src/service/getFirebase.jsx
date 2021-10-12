@@ -26,9 +26,3 @@ export function getFirestore(){
 };
 
 
-//export function getFirebase(){
- // return app
-//}
-
-    
-  

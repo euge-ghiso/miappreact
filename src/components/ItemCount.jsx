@@ -10,9 +10,7 @@ import Button from 'react-bootstrap/Button';
     const [estado, setEstado] = useState(0)
     const sinStock="tu pedido supera el stock!!   "
     
-    //const [estado, setEstado] = useState(0)
-
-    
+   
     
 const sumaCarro=()=>{
 
@@ -58,13 +56,7 @@ const sumaCarro=()=>{
         <Button className="btn btn-outline-dark btn-block" onClick={handlerOnAdd}>Agregar</Button>
       }
 
-
-
-
-
-
         </div>  
-
          
       </>      
     );

@@ -2,7 +2,7 @@
 
 import ItemCount from './ItemCount';
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+
 import {CartContext} from '../context/CartContext';
 import Card from 'react-bootstrap/Card';
 
@@ -18,7 +18,7 @@ function ItemDetail ({item}) {
         addItem(item,estado)
       }
     
-console.log("itemdetail",item)
+
 
 
     return (
@@ -31,9 +31,9 @@ console.log("itemdetail",item)
       <Card.Text>
      
                     <br/>
-                    <label>$ {item.precio}</label>
+                    <label>Precio $ {item.precio}</label>
                     <br/>
-                    <label>Stock {item.stock}</label>
+                    
       </Card.Text>
     </Card.Body>
     <ItemCount stock="5" initial="1" onAdd={onAdd} cambioBoton={cambioBoton}/>  

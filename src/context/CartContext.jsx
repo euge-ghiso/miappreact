@@ -39,9 +39,9 @@ export function CartContextProvider({children}){
 	  }
   
 
-console.log(carrito)
 
-//console.log(item.id)
+
+
 
 
 return(

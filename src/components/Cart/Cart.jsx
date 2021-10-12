@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-//import useCartContext from '../../context/CartContext';
 import {CartContext} from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import { getFirestore } from "../../service/getFirebase";
 import firebase from "firebase";
 import 'firebase/firestore';
-import { useEffect,useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
@@ -22,8 +21,7 @@ const [formData, setFormData] = useState(initialForm)
 
     let {carrito, clear,precioTotal,removeItem} = useContext(CartContext)
     
-    console.log(precioTotal());
-    console.log(carrito);
+   
        
 function handleChange(e){
     setFormData(
@@ -35,8 +33,6 @@ function handleChange(e){
 }
 
 
-console.log(formData);
-console.log(formData.email)
 
 
 function handleSubmit(e)
@@ -51,7 +47,7 @@ function handleSubmit(e)
         total: precioTotal()
                     }
      
-    console.log(newOrder)
+   
 
     const db = getFirestore()
     const orders = db.collection('orders')
@@ -120,18 +116,7 @@ function handleSubmit(e)
             
             
             <br />
-            <div>
-                {
-                  
-                   
-                    
-                  
-                   
-                   
-                   
-                }
-            </div>
-              
+                          
             </div>
             </>
         )

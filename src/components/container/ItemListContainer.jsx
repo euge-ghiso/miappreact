@@ -1,9 +1,8 @@
- import "../container/ItemListContainer.css"
  import { getFirestore } from '../../service/getFirebase';
  import ItemList from '../ItemList';
  import { useEffect,useState } from 'react';
  import { useParams } from 'react-router-dom';
-// import  getFirestore  from '../../service/getFirebase';
+
  
 
 
@@ -14,14 +13,14 @@ function ItemListContainer() {
   const {categoria} = useParams ()
   const user = false
   
-console.log("category",categoria)
+
 
   
   useEffect (() => {
         let db = getFirestore()
         let itemsCollection = db.collection('Items')
 
-        console.log(itemsCollection)
+     
 
       if (categoria){
 
@@ -63,9 +62,6 @@ if(user){
   return <h1>Login</h1>
 }
 
-
-
- // console.log(items)
   
     return (
       <>

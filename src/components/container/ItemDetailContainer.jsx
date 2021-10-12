@@ -21,22 +21,20 @@ function ItemDetailContainer() {
               if(resp.size===0){
               console.log("no hay nada")}
 
-              console.log(resp) 
+           
 
               setProductoDetalle(
                   {id: resp.id, ...resp.data()}
                   )
 
               
-              console.log(resp.data())
-              console.log(resp.data().stock)
               setLoading(false);
             })
             
 
             }, [])
     
-            console.log(id)
+           
            
     return (
         <>
